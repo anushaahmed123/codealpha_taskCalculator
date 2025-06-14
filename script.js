@@ -19,8 +19,17 @@ function calculateResult() {
 
 function squareRoot() {
   try {
-    const value = parseFloat(display.value);
-    if (value < 0) {
+    let value;
+    try {
+      value = eval(display.value);
+    } catch {
+      display.value = "Error";
+      display.removeAttribute('title');
+      return;
+    }
+    value = parseFloat(value);
+
+    if (isNaN(value) || value < 0) {
       display.value = "Error";
       display.removeAttribute('title');
       return;
@@ -32,6 +41,7 @@ function squareRoot() {
     display.value = 'Error';
     display.removeAttribute('title');
   }
+
 }
 
 // Real-time preview of result if expression is valid

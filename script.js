@@ -17,6 +17,23 @@ function calculateResult() {
   }
 }
 
+function squareRoot() {
+  try {
+    const value = parseFloat(display.value);
+    if (value < 0) {
+      display.value = "Error";
+      display.removeAttribute('title');
+      return;
+    }
+    const result = Math.sqrt(value);
+    display.value = result;
+    display.setAttribute('title', `√ = ${result}`);
+  } catch {
+    display.value = 'Error';
+    display.removeAttribute('title');
+  }
+}
+
 // Real-time preview of result if expression is valid
 function liveResult() {
   try {
@@ -43,4 +60,7 @@ document.addEventListener("keydown", (e) => {
   } else if (key.toLowerCase() === "c") {
     clearDisplay();
   }
+   else if (key === "r") {  
+  squareRoot();
+}
 });
